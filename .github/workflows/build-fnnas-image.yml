@@ -451,12 +451,6 @@ jobs:
           kernel_repo: ${{ inputs.kernel_repo }}
           rootfs_expand: ${{ inputs.rootfs_expand }}
           builder_name: ${{ inputs.builder_name }}
-        run: |
-          echo "fnnas_board: ${{ inputs.fnnas_board }}"
-          echo "=== Rockchip entries with BUILD=yes ==="
-          sed -e 's/NA//g' -e 's/NULL//g' -e 's/[ ][ ]*//g' make-fnnas/fnnas-files/common-files/etc/model_database.conf | grep -E '^[^#].+' | grep -E ':rockchip:.*:yes$' | head -20
-          echo "=== KERNEL_TAGS (column 9) ===" 
-          sed -e 's/NA//g' -e 's/NULL//g' -e 's/[ ][ ]*//g' make-fnnas/fnnas-files/common-files/etc/model_database.conf | grep -E '^[^#].+' | grep -E ':rockchip:.*:yes$' | awk -F':' '{print "BOARD="$14" KERNEL_TAGS="$9}'
 
       - name: Upload packaged FnNAS to Release
         uses: ophub/upload-to-releases@main
