@@ -435,8 +435,10 @@ jobs:
 
           # Create directory symlinks for packaging
           
+          
           ln -sf /builder/fnnas ${{ github.workspace }}/fnnas
-          ln -sf /builder/fnnas ${{ github.action_path }}/fnnas
+          mkdir -p ${{ github.workspace }}/fnnas-arm64
+          ln -sf /builder/fnnas ${{ github.workspace }}/fnnas-arm64
 
           echo "build_tag=${build_tag}" >> ${GITHUB_ENV}
           echo "status=success" >> ${GITHUB_OUTPUT}
